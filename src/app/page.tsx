@@ -1,3 +1,4 @@
+import { Loading } from "@/components/Loading";
 import { getCars } from "@/services/getCars";
 import { DataCars } from "@/types/DataCars";
 
@@ -14,7 +15,7 @@ export default async function Home() {
 
 
       <section className="grid gap-6 p-6 my-10 -translate-y-8 rounded-lg opacity-0 md:grid-cols-2 lg:grid-cols-3 animate-enter">
-        {cars && cars.map((car: DataCars) => (
+        {cars ? cars.map((car: DataCars) => (
           <div key={car.id} className="flex flex-col rounded border-[1px]">
               <img className="object-cover w-full rounded-t h-60" src={car.image_url} alt={car.name} />
               <div className="p-4">
@@ -30,7 +31,7 @@ export default async function Home() {
                 </div>
               </div>
           </div>
-        ))}
+        )) : <Loading />}
       </section>
     </main>
   )

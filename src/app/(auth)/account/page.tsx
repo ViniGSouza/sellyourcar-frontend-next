@@ -12,7 +12,7 @@ import { Loading } from "@/components/Loading";
 
 
 export default function Account() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [cars, setCars] = useState<DataCars[]>([]);
   const { data: session, status } = useSession();
 
@@ -22,18 +22,18 @@ export default function Account() {
   }
 
   async function fetchCars() {
+    setLoading(true);
     if (status === "authenticated") {
       const cars = await getMyCars(session?.user?.token!);
       setCars(cars);
     } else {
       setCars([]);
     }
+    setLoading(false);
   }
 
   useEffect(() => {
-    setLoading(true);
     fetchCars();
-    setLoading(false);
   }, []);
 
   return (
@@ -59,7 +59,7 @@ export default function Account() {
       </h2>
 
       <section className="grid gap-6 p-6 my-10 -translate-y-8 rounded-lg opacity-0 md:grid-cols-2 lg:grid-cols-3 animate-enter">
-        {cars && !loading ? cars.map((car: DataCars) => (
+        {loading ? <Loading /> : cars && cars.map((car: DataCars) => (
           <div key={car.id} className="flex flex-col rounded border-[1px]">
               <img className="object-cover w-full rounded-t h-60" src={car.image_url} alt={car.name} />
               <div className="p-4">
@@ -80,7 +80,7 @@ export default function Account() {
                 </div>
               </div>
           </div>
-        )) : <Loading />}
+        ))}
       </section>
     </div>
   </div>
