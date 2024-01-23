@@ -1,10 +1,8 @@
-import { SkeletonCars } from "@/components/SkeletonCars";
+import { Loading } from "@/components/Loading";
 import { getCars } from "@/services/getCars";
 import { DataCars } from "@/types/DataCars";
-import { Suspense } from "react";
 
 export const revalidate = 60;
-
 
 export default async function Home() {
   const cars = await getCars();
@@ -16,9 +14,8 @@ export default async function Home() {
       <p className="font-semibold text-center text-gray-600 md:mt-0">Aqui você pode <span className="text-blue-600">anunciar seu veículo</span> ou encontrar <span className="text-blue-600">o carro dos seus sonhos</span>, confira as opções abaixo.</p>
 
 
-      <section className="grid gap-6 p-6 my-10 rounded-lg md:grid-cols-2 lg:grid-cols-3">
-        <Suspense fallback={<SkeletonCars /> }>
-        {cars && cars.map((car: DataCars) => (
+      <section className="grid gap-6 p-6 my-10 -translate-y-8 rounded-lg opacity-0 md:grid-cols-2 lg:grid-cols-3 animate-enter">
+        {cars ? cars.map((car: DataCars) => (
           <div key={car.id} className="flex flex-col rounded border-[1px]">
               <img className="object-cover w-full rounded-t h-60" src={car.image_url} alt={car.name} />
               <div className="p-4">
@@ -34,9 +31,7 @@ export default async function Home() {
                 </div>
               </div>
           </div>
-        ))}
-        </Suspense>
-
+        )) : <Loading />}
       </section>
     </main>
   )
