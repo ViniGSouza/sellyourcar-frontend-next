@@ -45,7 +45,7 @@ export default function Account() {
         Meu Painel
       </h2>
       <p className="text-md font-medium text-zinc-700">
-        Olá, <span className="text-blue-700 font-semibold">{session?.user?.name}</span>. Aqui você ver seus carros e editá-los ou removê-los. Basta clicar no menu ao lado e escolher a opção que deseja.
+        Olá, <span className="text-blue-700 font-semibold">{session?.user?.name}</span>. Aqui você consegue ver seus carros, editá-los ou removê-los. Basta clicar no menu e escolher a opção que deseja.
       </p>
     </div>
 

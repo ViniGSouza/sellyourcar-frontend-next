@@ -45,7 +45,7 @@ export default function EditCar({ params }: { params: { id: number }}) {
           <GiCarWheel size={40} className="text-blue-800" />
           Editar Veículo
         </h2>
-        <p className="text-md font-medium text-zinc-700">Edite o veículo preenchendo o formulário ao lado. Os campos não são obrigatórios, basta preencher o campo que você deseja alterar.</p>
+        <p className="text-md font-medium text-zinc-700">Edite o veículo preenchendo o formulário. Os campos não são obrigatórios, basta preencher o campo que você deseja alterar.</p>
         <AccountMenu />
       </div>
 

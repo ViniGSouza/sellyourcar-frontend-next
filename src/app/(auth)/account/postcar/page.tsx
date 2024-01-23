@@ -57,7 +57,7 @@ export default function PostCar() {
           Adicionar Carro
         </h2>
         <p className="text-md font-medium text-zinc-700">
-          Para adicionar um novo veículo basta preencher o formulário ao lado.
+          Para adicionar um novo veículo basta preencher o formulário.
           Se atente a <span className="font-semibold text-blue-800">nomenclatura e descrição</span> correta do veículo.
         </p>
         <AccountMenu />
