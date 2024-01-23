@@ -48,9 +48,9 @@ export default function Register() {
         <Image src="/login.jpg" alt="Login" width={1000} height={0} className="w-full object-cover"/>
       </div>
       <div className="opacity-0 animate-enter -translate-x-8 flex col-span-5 flex-col justify-center items-center text-zinc-800 px-14">
-      <h2 className="text-5xl font-bold flex gap-4 items-center">
+      <h2 className="text-3xl font-bold flex gap-4 items-center">
         <GiCarWheel size={32} className="text-blue-800" />
-        Cadastre-se
+        Cadastrar-se
       </h2>
       <form className="flex flex-col mt-10 items-start w-full" onSubmit={handleSubmit(handleFormSubmit)}>
       <InputField label="Nome & Sobrenome" id="name" placeholder="Digite o seu nome e sobrenome..." type="text" register={register} />
