@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { registerUser } from "@/services/register";
 import InputField from "../../components/Input";
+import { Loading } from "@/components/Loading";
 
 const schema = z.object({
   name: z.string().min(3, { message: 'O campo deve ter pelo menos 3 caracteres' }).max(100, { message: 'O campo deve ter no máximo 100 caracteres' }),
@@ -28,10 +29,12 @@ export default function Register() {
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
+  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
   const handleFormSubmit: SubmitHandler<FormData> = async ({ name, email, password, phone }: FormData) => {
     setMessage("");
+    setLoading(true);
 
     try {
       const result = await registerUser(name, email, password, phone);
@@ -52,6 +55,9 @@ export default function Register() {
         <GiCarWheel size={32} className="text-blue-800" />
         Cadastrar-se
       </h2>
+      {loading
+       ? <Loading />
+      :       
       <form className="flex flex-col mt-10 items-start w-full" onSubmit={handleSubmit(handleFormSubmit)}>
       <InputField label="Nome & Sobrenome" id="name" placeholder="Digite o seu nome e sobrenome..." type="text" register={register} />
       {errors.name && <p className="text-red-600 mb-2">{errors.name?.message}</p>}
@@ -71,6 +77,8 @@ export default function Register() {
           Ja tem uma conta? <Link href="/login" className="text-blue-700 font-semibold">Clique aqui</Link>
         </p>
       </form>
+      }
+
       </div>
     </div>
   )
