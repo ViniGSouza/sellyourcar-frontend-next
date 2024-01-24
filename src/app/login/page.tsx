@@ -9,6 +9,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import InputField from "../../components/Input";
+import { useState } from "react";
+import { Loading } from "@/components/Loading";
 
 const schema = z.object({
   email: z.string().email({ message: 'Email inválido' }),
@@ -21,9 +23,11 @@ export default function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
   const handleFormSubmit: SubmitHandler<FormData> = async (data: FormData) => {
+    setLoading(true);
 
     const result = await signIn('credentials', {
       email: data.email,
@@ -35,6 +39,7 @@ export default function Login() {
       console.log(result)
       return;
     }
+    setLoading(false);
 
     router.replace('/');
   }
@@ -49,6 +54,9 @@ export default function Login() {
         <GiCarWheel size={32} className="text-blue-800" />
         Login
       </h2>
+      {loading ? 
+      <Loading /> 
+      : 
       <form className="flex flex-col mt-10 items-start w-full" onSubmit={handleSubmit(handleFormSubmit)}>
       <InputField label="Email" id="email" placeholder="Digite o seu e-mail..." type="text" register={register} />
       {errors.email &&<p className="text-red-600 mb-2">{errors.email?.message}</p>}
@@ -73,6 +81,7 @@ export default function Login() {
           </Link>
         </div>
       </form>
+      }
       </div>
     </div>
   )
