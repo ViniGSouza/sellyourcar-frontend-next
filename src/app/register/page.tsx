@@ -42,6 +42,8 @@ export default function Register() {
     } catch (error) {
       console.log(error);
       setMessage("Ocorreu um erro ao criar a conta");
+    } finally {
+      setLoading(false);
     }
   }
 
