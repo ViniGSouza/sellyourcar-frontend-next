@@ -58,27 +58,29 @@ export default function Register() {
         Cadastrar-se
       </h2>
       {loading
-       ? <Loading />
+       ? <div className="my-10 animate-enter opacity-0">
+          <Loading />
+        </div>
       :       
-      <form className="flex flex-col mt-10 items-start w-full" onSubmit={handleSubmit(handleFormSubmit)}>
-      <InputField label="Nome & Sobrenome" id="name" placeholder="Digite o seu nome e sobrenome..." type="text" register={register} />
-      {errors.name && <p className="text-red-600 mb-2">{errors.name?.message}</p>}
+        <form className="flex flex-col mt-10 items-start w-full" onSubmit={handleSubmit(handleFormSubmit)}>
+        <InputField label="Nome & Sobrenome" id="name" placeholder="Digite o seu nome e sobrenome..." type="text" register={register} />
+        {errors.name && <p className="text-red-600 mb-2">{errors.name?.message}</p>}
 
-      <InputField label="Email" id="email" placeholder="Digite o seu e-mail..." type="text" register={register} />
-      {errors.email && <p className="text-red-600 mb-2">{errors.email?.message}</p>}
+        <InputField label="Email" id="email" placeholder="Digite o seu e-mail..." type="text" register={register} />
+        {errors.email && <p className="text-red-600 mb-2">{errors.email?.message}</p>}
 
-      <InputField label="Senha" id="password" placeholder="Digite sua senha..." type="password" register={register} />
-      {errors.password && <p className="text-red-600 mb-2">{errors.password?.message}</p>}
+        <InputField label="Senha" id="password" placeholder="Digite sua senha..." type="password" register={register} />
+        {errors.password && <p className="text-red-600 mb-2">{errors.password?.message}</p>}
 
-      <InputField label="Telefone (Whatsapp)" id="phone" placeholder="Ex: 81985335268" type="text" register={register} />
-      {errors.phone && <p className="text-red-600 mb-2">{errors.phone?.message}</p>}
+        <InputField label="Telefone (Whatsapp)" id="phone" placeholder="Ex: 81985335268" type="text" register={register} />
+        {errors.phone && <p className="text-red-600 mb-2">{errors.phone?.message}</p>}
 
-        <button type="submit" className="my-5 text-sm font-semibold text-white bg-blue-700 p-2 w-full rounded hover:bg-blue-900 duration-150">Cadastrar</button>
-        {message && <p className="mb-3 text-blue-700 font-bold text-lg">{message}</p>}
-        <p className="text-sm font-medium">
-          Ja tem uma conta? <Link href="/login" className="text-blue-700 font-semibold">Clique aqui</Link>
-        </p>
-      </form>
+          <button type="submit" className="my-5 text-sm font-semibold text-white bg-blue-700 p-2 w-full rounded hover:bg-blue-900 duration-150">Cadastrar</button>
+          {message && <p className="mb-3 text-blue-700 font-bold text-lg">{message}</p>}
+          <p className="text-sm font-medium">
+            Ja tem uma conta? <Link href="/login" className="text-blue-700 font-semibold">Clique aqui</Link>
+          </p>
+        </form>
       }
 
       </div>

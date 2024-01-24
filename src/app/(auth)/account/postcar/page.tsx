@@ -50,7 +50,7 @@ export default function PostCar() {
   };
 
   return (
-    <div className="min-h-screen md:grid grid-cols-2 gap-20 px-5 md:px-20 lg:px-40 items-start py-20">
+    <div className="min-h-screen md:grid grid-cols-2 gap-20 px-5 md:px-20 lg:px-40 items-start py-20 animate-enter opacity-0 -translate-y-8">
       <div className="flex flex-col gap-3 mb-10 md:mb-0">
         <h2 className="text-5xl font-bold text-zinc-800 flex gap-3 items-center">
           <GiCarWheel size={32} className="text-blue-800" />

@@ -55,32 +55,34 @@ export default function Login() {
         Login
       </h2>
       {loading ? 
-      <Loading /> 
-      : 
-      <form className="flex flex-col mt-10 items-start w-full" onSubmit={handleSubmit(handleFormSubmit)}>
-      <InputField label="Email" id="email" placeholder="Digite o seu e-mail..." type="text" register={register} />
-      {errors.email &&<p className="text-red-600 mb-2">{errors.email?.message}</p>}
-
-      <InputField label="Senha" id="password" placeholder="Digite sua senha..." type="password" register={register} />
-      {errors.password &&<p className="text-red-600 mb-2">{errors.password?.message}</p>}
-      
-      <button type="submit" className="my-5 text-sm font-semibold text-white bg-blue-700 p-2 w-full rounded hover:bg-blue-900 duration-150">
-        Entrar
-      </button>
-
-        <Link href="/password" className="font-semibold text-blue-700 hover:text-blue-900 duration-150">
-          Esqueceu sua senha?
-        </Link>
-
-        <div className="mt-10">
-          <p className="font-semibold mb-5">
-            Ainda não tem uma conta? Registre-se já.
-          </p>
-          <Link href="/register" className="bg-blue-700 text-sm font-semibold text-white py-2 px-4 w-full rounded hover:bg-blue-900 duration-150">
-            Fazer cadastro
-          </Link>
+        <div className="my-10 animate-enter opacity-0">
+          <Loading />
         </div>
-      </form>
+      : 
+        <form className="flex flex-col mt-10 items-start w-full" onSubmit={handleSubmit(handleFormSubmit)}>
+        <InputField label="Email" id="email" placeholder="Digite o seu e-mail..." type="text" register={register} />
+        {errors.email &&<p className="text-red-600 mb-2">{errors.email?.message}</p>}
+
+        <InputField label="Senha" id="password" placeholder="Digite sua senha..." type="password" register={register} />
+        {errors.password &&<p className="text-red-600 mb-2">{errors.password?.message}</p>}
+        
+        <button type="submit" className="my-5 text-sm font-semibold text-white bg-blue-700 p-2 w-full rounded hover:bg-blue-900 duration-150">
+          Entrar
+        </button>
+
+          <Link href="/password" className="font-semibold text-blue-700 hover:text-blue-900 duration-150">
+            Esqueceu sua senha?
+          </Link>
+
+          <div className="mt-10">
+            <p className="font-semibold mb-5">
+              Ainda não tem uma conta? Registre-se já.
+            </p>
+            <Link href="/register" className="bg-blue-700 text-sm font-semibold text-white py-2 px-4 w-full rounded hover:bg-blue-900 duration-150">
+              Fazer cadastro
+            </Link>
+          </div>
+        </form>
       }
       </div>
     </div>
