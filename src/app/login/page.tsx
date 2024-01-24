@@ -55,7 +55,7 @@ export default function Login() {
         Login
       </h2>
       {loading ? 
-        <div className="my-10 animate-enter opacity-0">
+        <div className="my-10 animate-enter opacity-0 translate-y-8">
           <Loading />
         </div>
       : 
