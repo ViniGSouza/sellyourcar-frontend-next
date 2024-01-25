@@ -12,7 +12,7 @@ import InputField from '@/components/Input';
 const schema = z.object({
   name: z.string().min(3, { message: 'O campo deve ter pelo menos 3 caracteres' }).max(50, { message: 'O campo deve ter no máximo 50 caracteres' }),
   description: z.string().min(3, { message: 'O campo deve ter pelo menos 3 caracteres' }).max(100, { message: 'O campo deve ter no máximo 100 caracteres' }),
-  value: z.number().min(1, { message: 'O campo deve ter pelo menos 1 caractere' }).max(10, { message: 'O campo deve ter no máximo 10 caracteres' }),
+  value: z.string().min(1, { message: 'O campo deve ter pelo menos 1 caractere' }).max(10, { message: 'O campo deve ter no máximo 10 caracteres' }),
   file: z.any(),
 });
 
