@@ -39,9 +39,8 @@ export default function Login() {
       console.log(result)
       return;
     }
-    setLoading(false);
-
     router.replace('/');
+    setLoading(false);
   }
 
   return (
