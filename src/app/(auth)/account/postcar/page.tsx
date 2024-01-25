@@ -12,14 +12,14 @@ import InputField from '@/components/Input';
 const schema = z.object({
   name: z.string().min(3, { message: 'O campo deve ter pelo menos 3 caracteres' }).max(50, { message: 'O campo deve ter no máximo 50 caracteres' }),
   description: z.string().min(3, { message: 'O campo deve ter pelo menos 3 caracteres' }).max(100, { message: 'O campo deve ter no máximo 100 caracteres' }),
-  value: z.string().min(1, { message: 'O campo deve ter pelo menos 1 caractere' }).max(10, { message: 'O campo deve ter no máximo 10 caracteres' }),
+  value: z.number().min(1, { message: 'O campo deve ter pelo menos 1 caractere' }).max(10, { message: 'O campo deve ter no máximo 10 caracteres' }),
   file: z.any(),
 });
 
 interface FormData {
   name: string;
   description: string;
-  value: string;
+  value: number;
   file: FileList;
 }
 
@@ -37,7 +37,7 @@ export default function PostCar() {
       const formData = new FormData();
       formData.append('name', data.name);
       formData.append('description', data.description);
-      formData.append('value', data.value);
+      formData.append('value', data.value.toString());
       formData.append('file', data.file[0]);
 
       await createCar(formData, session.user.token);
@@ -69,7 +69,7 @@ export default function PostCar() {
           {errors.name && <p className="text-red-500 text-sm mb-2">{errors.name.message}</p>}
           <InputField label="Descreva o carro" id="description" placeholder="Descreva o veículo..." type="text" register={register} />
           {errors.description && <p className="text-red-500 text-sm mb-2">{errors.description.message}</p>}
-          <InputField label="Valor do carro" id="value" placeholder="Digite em números o valor do veículo..." type="text" register={register} />
+          <InputField label="Valor do carro" id="value" placeholder="Digite em números o valor do veículo..." type="number" register={register} />
           {errors.value && <p className="text-red-500 text-sm mb-2">{errors.value.message}</p>}
           <label htmlFor="file" className="text-lg text-md font-bold text-zinc-700">
             Imagem do carro:
