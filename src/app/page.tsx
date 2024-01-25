@@ -6,6 +6,7 @@ export const revalidate = 60;
 
 export default async function Home() {
   const cars = await getCars();
+  const sortedCars = cars.sort((a: DataCars, b: DataCars) => a.value - b.value);
   
   return (
     <main className="flex flex-col items-center py-10 px-3 md:p-20 min-h-screen">
@@ -15,23 +16,24 @@ export default async function Home() {
 
 
       <section className="grid gap-6 p-6 my-10 -translate-y-8 rounded-lg opacity-0 md:grid-cols-2 lg:grid-cols-3 animate-enter">
-        {cars ? cars.map((car: DataCars) => (
-          <div key={car.id} className="flex flex-col rounded border-[1px]">
-              <img className="object-cover w-full rounded-t h-60" src={car.image_url} alt={car.name} />
-              <div className="p-4">
-                <h1 className="mt-3 text-xl font-semibold">{car.name}</h1>
-                <p className="text-sm text-gray-600">{car.description}</p>
-                <div className="flex flex-col">
-                  <p className="mt-2 text-3xl font-bold text-gray-800"><span className="text-sm">
-                    R$</span> {car.value}
-                  </p>
-                   <a href={`https://api.whatsapp.com/send?phone=+55${car.carOwnerPhone}&text=Olá%2C+vi+seu+anúncio+no+SellYourCar+e+tenho+interesse+na+compra+do+veículo.`} target="_blank" className="w-full text-center px-3 py-2 mt-3 text-sm font-bold text-white duration-150 ease-in-out bg-blue-600 rounded hover:bg-blue-800 hover:scale-95">
-                    Comprar agora
-                  </a>
-                </div>
-              </div>
+
+    {sortedCars ? sortedCars.map((car: DataCars) => (
+      <div key={car.id} className="flex flex-col rounded border-[1px]">
+        <img className="object-cover w-full rounded-t h-60" src={car.image_url} alt={car.name} />
+        <div className="flex flex-col flex-grow p-4">
+          <h1 className="mt-3 text-xl font-semibold">{car.name}</h1>
+          <p className="text-sm text-gray-600">{car.description}</p>
+          <div className="flex flex-col mt-auto">
+            <p className="mt-2 text-3xl font-bold text-gray-800"><span className="text-sm">R$</span> {car.value}</p>
+            <a href={`https://api.whatsapp.com/send?phone=+55${car.carOwnerPhone}&text=Olá%2C+vi+seu+anúncio+no+SellYourCar+e+tenho+interesse+na+compra+do+veículo.`} target="_blank" className="w-full text-center px-3 py-2 mt-3 text-sm font-bold text-white duration-150 ease-in-out bg-blue-600 rounded hover:bg-blue-800 hover:scale-95">
+              Comprar agora
+            </a>
           </div>
-        )) : <Loading />}
+        </div>
+      </div>
+    )) : <Loading />}
+
+
       </section>
     </main>
   )
