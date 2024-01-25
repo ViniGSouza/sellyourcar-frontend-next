@@ -26,7 +26,7 @@ export default function EditCar({ params }: { params: { id: number }}) {
       const formData = new FormData();
       data.name && data.name.length > 0 && formData.append('name', data.name);
       data.description && data.description.length > 0 && formData.append('description', data.description);
-      data.value && data.value.length > 0 && formData.append('value', data.value);
+      parseFloat(data.value) > 0 && data.value.length > 0 && formData.append('value', data.value.toString());
       data.file && data.file.length > 0 && formData.append('file', data.file[0]);
       await updateCar(params.id, formData, `${session?.user?.token}`);
     } catch (error) {
@@ -53,7 +53,7 @@ export default function EditCar({ params }: { params: { id: number }}) {
         <form onSubmit={handleSubmit(handleFormSubmit)}>
           <InputField label="Nome do carro" id="name" placeholder="Digite o nome do carro..." type="text" register={register} />
           <InputField label="Descreva o carro" id="description" placeholder="Descreva o veículo..." type="text" register={register} />
-          <InputField label="Valor do carro" id="value" placeholder="Digite em números o valor do veículo..." type="text" register={register} />
+          <InputField label="Valor do carro" id="value" placeholder="Digite em números o valor do veículo..." type="number" register={register} />
           <label htmlFor="file" className="text-lg text-md font-bold text-zinc-700">
             Imagem do carro:
           </label>
